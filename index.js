@@ -6,6 +6,7 @@ require("dotenv").config();
 const Navigation = require("./models/navigation");
 const Service = require("./models/services");
 const Portfolio = require("./models/portfolio");
+const Hero = require("./models/hero");
 
 const app = express();
 const port = 5000;
@@ -46,6 +47,15 @@ app.get("/api/portfolio-data", async (req, res) => {
   try {
     const portfolioData = await Portfolio.find({});
     res.json(portfolioData);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch portfolio data" });
+  }
+});
+
+app.get("/api/hero-data", async (req, res) => {
+  try {
+    const heroData = await Hero.find({});
+    res.json(heroData);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch portfolio data" });
   }

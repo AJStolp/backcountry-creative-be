@@ -51,6 +51,22 @@ app.get("/api/portfolio-data", async (req, res) => {
   }
 });
 
+app.get("/api/verify-data", async (req, res) => {
+  try {
+    const navCount = await Navigation.countDocuments();
+    const serviceCount = await Service.countDocuments();
+    const portfolioCount = await Portfolio.countDocuments();
+
+    res.json({
+      navigationDocuments: navCount,
+      serviceDocuments: serviceCount,
+      portfolioDocuments: portfolioCount,
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to verify data" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

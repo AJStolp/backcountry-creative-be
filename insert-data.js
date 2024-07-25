@@ -5,9 +5,9 @@ const Navigation = require("./models/navigation");
 const Service = require("./models/services");
 const Portfolio = require("./models/portfolio");
 
-const navigationData = require("./navigation-data");
-const serviceData = require("./services-data");
-const portfolioData = require("./portfolio-data");
+const navigationData = require("./navigation-data/navigation-data");
+const servicesData = require("./services-data/services-data");
+const portfolioData = require("./portfolio-data/portfolio-data");
 
 mongoose
   .connect(process.env.DATABASE_URL)
@@ -22,7 +22,7 @@ mongoose
         await Portfolio.deleteMany({});
 
         await Navigation.insertMany(navigationData);
-        await Service.insertMany(serviceData);
+        await Service.insertMany(servicesData);
         await Portfolio.insertMany(portfolioData);
 
         console.log("Data inserted");

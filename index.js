@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const Navigation = require("./models/navigation");
-const Service = require("./models/service");
+const Service = require("./models/services");
 const Portfolio = require("./models/portfolio");
 
 const app = express();

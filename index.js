@@ -3,19 +3,22 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const Navigation = require("./models/navigation");
-const Service = require("./models/services");
-const Portfolio = require("./models/portfolio");
+const Navigation = require("./models/navigation"); // Ensure filename matches
+const Service = require("./models/services"); // Ensure filename matches
+const Portfolio = require("./models/portfolio"); // Ensure filename matches
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000; // Use the PORT environment variable if available, otherwise default to 5000
 
 app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.DATABASE_URL)
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Connected to MongoDB");
   })

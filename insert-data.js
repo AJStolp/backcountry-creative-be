@@ -24,11 +24,8 @@ mongoose
         await Navigation.insertMany(navigationData);
         await Service.insertMany(servicesData);
         await Portfolio.insertMany(portfolioData);
-
-        console.log("Data inserted");
         mongoose.connection.close();
       } catch (err) {
-        console.error("Error inserting data:", err);
         mongoose.connection.close();
       }
     };

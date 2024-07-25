@@ -8,19 +8,14 @@ const Service = require("./models/services");
 const Portfolio = require("./models/portfolio");
 
 const app = express();
-const port = process.env.PORT || 5000; // Use the PORT environment variable if available, otherwise default to 5000
+const port = 5000;
 
 app.use(cors());
 app.use(express.json());
 
-// Use DATABASE_URL for MongoDB connection string
-const mongoUrl = process.env.DATABASE_URL;
-
-console.log("Connecting to MongoDB URL:", mongoUrl); // Debugging line to ensure URL is correct
-
-// Connect to MongoDB without deprecated options
+// Connect to MongoDB
 mongoose
-  .connect(mongoUrl)
+  .connect(process.env.DATABASE_URL)
   .then(() => {
     console.log("Connected to MongoDB");
   })

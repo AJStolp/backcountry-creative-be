@@ -7,6 +7,7 @@ const Navigation = require("./models/navigation");
 const Service = require("./models/services");
 const Portfolio = require("./models/portfolio");
 const Hero = require("./models/hero");
+const Trends = require("./models/trends");
 
 const app = express();
 const port = 5000;
@@ -79,7 +80,7 @@ app.get("/api/verify-data", async (req, res) => {
 
 app.get("/api/web-trend", async (req, res) => {
   try {
-    const trendsData = await Hero.find({});
+    const trendsData = await Trends.find({});
     res.json(trendsData);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch portfolio data" });

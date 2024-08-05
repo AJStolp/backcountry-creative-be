@@ -77,18 +77,12 @@ app.get("/api/verify-data", async (req, res) => {
   }
 });
 
-router.get("/api/web-trend", async (req, res) => {
+app.get("/api/web-trend", async (req, res) => {
   try {
-    const webTrend = {
-      image: "path_to_your_trend_image.jpg",
-      title: "Web Design Trends of 2024: What's Hot",
-      content:
-        "Curious about what's trending in web design this year? From sleek minimalism to cutting-edge AI, we've got the scoop on what's making waves in the digital world.",
-      year: "2024",
-    };
-    res.json(webTrend);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching web trend data" });
+    const trendsData = await Hero.find({});
+    res.json(trendsData);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch portfolio data" });
   }
 });
 

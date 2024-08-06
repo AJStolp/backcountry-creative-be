@@ -8,9 +8,12 @@ const Service = require("./models/services");
 const Portfolio = require("./models/portfolio");
 const Hero = require("./models/hero");
 const Trends = require("./models/trends");
+const Contact = require("./models/contact");
 
 const app = express();
 const port = 5000;
+
+const axios = require("axios");
 
 app.use(cors());
 app.use(express.json());
@@ -89,12 +92,20 @@ app.get("/api/web-trend", async (req, res) => {
 
 app.post("/api/contact", async (req, res) => {
   try {
+    // Save to database (as before)
     const { name, email, message } = req.body;
     const newContact = new Contact({ name, email, message });
     await newContact.save();
+
+    // Send message to Discord
+    const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
+    await axios.post(discordWebhookUrl, {
+      content: `New contact form submission:\nName: ${name}\nEmail: ${email}\nMessage: ${message}`,
+    });
+
     res.status(200).json({ message: "Message sent successfully" });
   } catch (error) {
-    console.error("Error saving contact message:", error);
+    console.error("Error processing contact form:", error);
     res.status(500).json({ message: "Error sending message" });
   }
 });

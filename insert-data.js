@@ -6,6 +6,7 @@ const Service = require("./models/services");
 const Portfolio = require("./models/portfolio");
 const Hero = require("./models/hero");
 const Trends = require("./models/trends");
+const Contact = require("./models/contact");
 
 const navigationData = require("./navigation-data/navigation-data");
 const servicesData = require("./services-data/services-data");
@@ -26,8 +27,9 @@ mongoose
         await Portfolio.deleteMany({});
         await Hero.deleteMany({});
         await Trends.deleteMany({});
+        await Contact.deleteMany({});
 
-        await Navigation.insertMany(navigationData);
+        await await Navigation.insertMany(navigationData);
         await Service.insertMany(servicesData);
         await Portfolio.insertMany(portfolioData);
         await Hero.insertMany(heroData);

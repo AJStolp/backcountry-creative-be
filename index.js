@@ -87,6 +87,18 @@ app.get("/api/web-trend", async (req, res) => {
   }
 });
 
+app.post("/api/contact", async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+    const newContact = new Contact({ name, email, message });
+    await newContact.save();
+    res.status(200).json({ message: "Message sent successfully" });
+  } catch (error) {
+    console.error("Error saving contact message:", error);
+    res.status(500).json({ message: "Error sending message" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

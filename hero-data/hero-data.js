@@ -11,6 +11,6 @@ module.exports = [
     content:
       "We’re excited to help you build amazing websites and creative solutions. Let’s create something great together. Contact Us",
     cta: "Chat with us",
-    url: "mailto:Backcountrycreative.com",
+    url: "/contact",
   },
 ];

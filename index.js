@@ -11,7 +11,7 @@ const Trends = require("./models/trends");
 const Contact = require("./models/contact");
 
 const app = express();
-const port = 5000;
+const PORT = process.env.PORT || 5000;
 
 const axios = require("axios");
 
@@ -61,7 +61,7 @@ app.get("/api/hero-data", async (req, res) => {
     const heroData = await Hero.find({});
     res.json(heroData);
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch portfolio data" });
+    res.status(500).json({ error: "Failed to fetch hero data" });
   }
 });
 
@@ -86,7 +86,7 @@ app.get("/api/web-trend", async (req, res) => {
     const trendsData = await Trends.find({});
     res.json(trendsData);
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch portfolio data" });
+    res.status(500).json({ error: "Failed to fetch web trend data" });
   }
 });
 
@@ -110,6 +110,6 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
